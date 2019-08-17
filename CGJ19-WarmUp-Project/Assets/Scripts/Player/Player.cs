@@ -9,37 +9,29 @@ public class Player : MonoBehaviour
     public bool moving;
     public Vector2 nextMove;
 
+    public static Player instance;
+
     public float speed;
+    public float timeUntilDash;
 
 
     Animator playerAnim;
     Rigidbody2D playerRigidbody;
 
     
-
+    // ====IMPORTANT FUNCTIONS====
 
     void Start()
     {
-
-        if (GetComponent<Animator>() != null)
+        if(instance == null)
         {
-            playerAnim = GetComponent<Animator>();
-            playerAnim.SetFloat("LastMoveX", 0);
-            playerAnim.SetFloat("LastMoveY", -1);
+            instance = this;
         } else
         {
-            Debug.Log("Player missing animator!");
+            Debug.Log("Multiple instances of player?");
         }
 
-        if(GetComponent<Rigidbody2D>() != null)
-        {
-            playerRigidbody = GetComponent<Rigidbody2D>();
-        } else
-        {
-            Debug.Log("Player missing Rigidbody2D!");
-        }
-
-
+        CheckForComponents();
     }
 
     void FixedUpdate()
@@ -47,21 +39,79 @@ public class Player : MonoBehaviour
         RigidMove();
     }
 
-
     void Update()
     {
+        CheckForDash();
+        UpdateMovement();
+    }
 
-        if(Input.GetButtonDown("Dash"))
+
+
+
+    // ====OTHER FUNCTIONS====
+
+    void CheckForComponents()
+    {
+        if (GetComponent<Animator>() != null)
         {
-            Debug.Log("Dashing");
+            playerAnim = GetComponent<Animator>();
+            playerAnim.SetFloat("LastMoveX", 0);
+            playerAnim.SetFloat("LastMoveY", -1);
+        }
+        else
+        {
+            Debug.Log("Player missing animator!");
         }
 
-        if(moving)
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            playerRigidbody = GetComponent<Rigidbody2D>();
+        }
+        else
+        {
+            Debug.Log("Player missing Rigidbody2D!");
+        }
+    }
+
+    public void Dash()
+    {
+        Debug.Log("Dashing!");
+        Vector2 dashDir = new Vector2(lastMoveX, lastMoveY);
+        dashDir = dashDir.normalized;
+
+        
+
+        playerRigidbody.AddForce(dashDir * speed * 150, ForceMode2D.Impulse);
+        Instantiate(ParticleManager.instance.GetParticles("dash"), transform.position, Quaternion.identity);
+        timeUntilDash = 1;
+    }
+    
+    void CheckForDash()
+    {
+        if (Input.GetButtonDown("Dash") && timeUntilDash <= 0)
+        {
+            Dash();
+        }
+
+        if(timeUntilDash > 0)
+        {
+            timeUntilDash -= Time.deltaTime;
+        } else if(timeUntilDash < 0)
+        {
+            timeUntilDash = 0;
+        }
+
+    }
+
+    // CALLED EVERY UPDATE TO CHECK FOR MOVEMENT
+    void UpdateMovement()
+    {
+        if (moving)
         {
             lastMoveX = moveX;
             lastMoveY = moveY;
         }
-        
+
         moveX = Input.GetAxisRaw("Horizontal");
         moveY = Input.GetAxisRaw("Vertical");
 
@@ -77,8 +127,6 @@ public class Player : MonoBehaviour
 
         playerAnim.SetFloat("LastMoveX", lastMoveX);
         playerAnim.SetFloat("LastMoveY", lastMoveY);
-
-
     }
 
     void RigidMove()
