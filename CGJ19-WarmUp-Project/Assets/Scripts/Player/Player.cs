@@ -12,8 +12,6 @@ public class Player : MonoBehaviour
     public static Player instance;
 
     public static int health = 5;
-    public static int maxHealth = 5;
-
 
 
     public float speed;
