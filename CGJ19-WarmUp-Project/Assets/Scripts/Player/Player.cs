@@ -50,6 +50,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+        if(Input.GetButtonDown("Dash"))
+        {
+            Debug.Log("Dashing");
+        }
+
         if(moving)
         {
             lastMoveX = moveX;
@@ -80,7 +86,7 @@ public class Player : MonoBehaviour
         nextMove = new Vector2(moveX, moveY);
         nextMove = nextMove.normalized;
 
-        playerRigidbody.AddForce(nextMove * speed * 7.5f, ForceMode2D.Impulse);
+        playerRigidbody.AddForce(nextMove * speed * 15f, ForceMode2D.Impulse);
     }
 
 }
