@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Cursor.SetCursor(cursorTexture, new Vector2(hotspot.x + 50f, hotspot.y + 50f), CursorMode.Auto);
+        Cursor.SetCursor(cursorTexture, new Vector2(hotspot.x, hotspot.y), CursorMode.ForceSoftware);
     }
 
     void Awake()
