@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
 
     public static Player instance;
 
+    public static int health = 5;
+    public static int maxHealth = 5;
+
+
+
     public float speed;
     public float timeUntilDash;
 
@@ -41,14 +46,28 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        CheckDebugControls();
         CheckForDash();
         UpdateMovement();
     }
 
 
 
-
     // ====OTHER FUNCTIONS====
+
+
+    void CheckDebugControls()
+    {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            health++;
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            health--;
+        }
+    }
+
 
     void CheckForComponents()
     {
