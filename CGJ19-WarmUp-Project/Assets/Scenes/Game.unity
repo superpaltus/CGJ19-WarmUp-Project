@@ -273,7 +273,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1463216585}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &297151630
 SpriteRenderer:
@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: -68805473
   m_SortingLayer: 3
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: a20d7d5516da0b4468217fe0881d0890, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed94e5d5aa271c348bc39fc15daa0c00, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -324,6 +324,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &398937781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 398937782}
+  - component: {fileID: 398937783}
+  m_Layer: 0
+  m_Name: CrystalHeartManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398937782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398937781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1463216585}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398937783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398937781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa8311193b5fd4842bae07f6092858ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHearts: []
+  crystalHeart: {fileID: 8468106078255863346, guid: bfe5462d7c2786b4e82a9b56a280c7da,
+    type: 3}
+  radius: 1
+  rotationAmount: 0
+  spacing: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 575871712}
   - component: {fileID: 575871713}
+  - component: {fileID: 575871714}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -489,6 +539,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorTexture: {fileID: 2800000, guid: a3c3b5b4a3441e249abc9d3009c32585, type: 3}
   hotspot: {x: 0, y: 0}
+--- !u!114 &575871714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575871711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbd65717ec182c540be7beb6c0665021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &691881109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,7 +2446,7 @@ RectTransform:
   m_Children:
   - {fileID: 891263166}
   m_Father: {fileID: 1463216585}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6352,6 +6414,7 @@ Transform:
   m_LocalPosition: {x: 0.5, y: 0.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 398937782}
   - {fileID: 297151629}
   - {fileID: 917851616}
   m_Father: {fileID: 87130355}
@@ -7616,80 +7679,68 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1466793205}
     m_ColliderPaths:
-    - - X: 69999983
-        Y: 69999900
-      - X: 69999983
-        Y: 90000100
-      - X: 49999900
-        Y: 89999403
-      - X: 50000510
-        Y: 69999900
-    - - X: -120000100
-        Y: 69999988
-      - X: 49997087
-        Y: 70000029
-      - X: 49997029
-        Y: 89999992
-      - X: -120000100
-        Y: 90000012
-    - - X: 209999577
-        Y: -10000100
-      - X: 209998678
-        Y: 10000100
-      - X: 180000100
-        Y: 10001521
-      - X: 179999722
-        Y: 20000100
-      - X: 69999900
-        Y: 19999751
-      - X: 70001728
-        Y: -100
-      - X: 179999900
-        Y: -2159
-      - X: 180000191
-        Y: -10000100
-    - - X: 219999954
-        Y: -60000100
-      - X: 220002275
-        Y: -50000100
-      - X: 240000100
-        Y: -49999548
-      - X: 239999548
-        Y: -29999900
-      - X: 219999900
-        Y: -30001293
-      - X: 219998260
-        Y: -39999900
-      - X: 199999900
-        Y: -40000104
-      - X: 200000075
-        Y: -60000100
+    - - X: 69999971
+        Y: 70000000
+      - X: 69999971
+        Y: 90000000
+      - X: -120000000
+        Y: 89999971
+      - X: -119999971
+        Y: 70000000
+    - - X: 209999971
+        Y: -10000000
+      - X: 209999971
+        Y: 10000000
+      - X: 180000000
+        Y: 10000029
+      - X: 179999971
+        Y: 20000000
+      - X: 70000000
+        Y: 19999971
+      - X: 70000029
+        Y: 0
+      - X: 180000000
+        Y: -29
+      - X: 180000029
+        Y: -10000000
+    - - X: 219999971
+        Y: -60000000
+      - X: 220000029
+        Y: -50000000
+      - X: 240000000
+        Y: -49999971
+      - X: 239999971
+        Y: -30000000
+      - X: 220000000
+        Y: -30000029
+      - X: 219999971
+        Y: -40000000
+      - X: 200000000
+        Y: -40000029
+      - X: 200000029
+        Y: -60000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 6.999995, y: 6.9999905}
-      - {x: 6.999995, y: 9.00001}
-      - {x: 4.99999, y: 8.999938}
-      - {x: 5.000054, y: 6.9999905}
-    - - {x: -12.00001, y: 7.000002}
-      - {x: 4.9997087, y: 7.0000057}
-      - {x: 4.9997, y: 8.999999}
-      - {x: -12.00001, y: 8.999998}
-    - - {x: 20.999956, y: -1.00001}
-      - {x: 20.999866, y: 1.00001}
-      - {x: 18.00001, y: 1.000155}
-      - {x: 17.99997, y: 2.00001}
-      - {x: 6.9999905, y: 1.9999722}
-      - {x: 7.000176, y: -0.00001}
-      - {x: 17.99999, y: -0.0002188}
-      - {x: 18.000023, y: -1.00001}
-    - - {x: 21.999992, y: -6.00001}
-      - {x: 22.00023, y: -5.00001}
-      - {x: 24.00001, y: -4.999952}
-      - {x: 23.999952, y: -2.99999}
-      - {x: 21.99999, y: -3.0001323}
-      - {x: 21.999823, y: -3.99999}
-      - {x: 19.99999, y: -4.0000134}
-      - {x: 20.00001, y: -6.00001}
+    - - {x: 6.9999943, y: 7}
+      - {x: 6.9999943, y: 9}
+      - {x: -12, y: 8.999994}
+      - {x: -11.999994, y: 7}
+    - - {x: 20.999994, y: -1}
+      - {x: 20.999994, y: 1}
+      - {x: 18, y: 1.0000058}
+      - {x: 17.999994, y: 2}
+      - {x: 7, y: 1.9999943}
+      - {x: 7.0000057, y: 0}
+      - {x: 18, y: -0.0000058}
+      - {x: 18.000006, y: -1}
+    - - {x: 21.999994, y: -6}
+      - {x: 22.000006, y: -5}
+      - {x: 24, y: -4.9999943}
+      - {x: 23.999994, y: -3}
+      - {x: 22, y: -3.0000057}
+      - {x: 21.999994, y: -4}
+      - {x: 20, y: -4.0000057}
+      - {x: 20.000006, y: -6}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &1466793204
