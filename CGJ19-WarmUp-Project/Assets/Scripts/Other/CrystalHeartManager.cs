@@ -12,7 +12,7 @@ public class CrystalHeartManager : MonoBehaviour
     public float rotationAmount;
     public float spacing;
 
-    private void Start()
+    private void OnEnable()
     {
         Player.OnHealthValueChanged += Player_OnHealthValueChanged;
     }
