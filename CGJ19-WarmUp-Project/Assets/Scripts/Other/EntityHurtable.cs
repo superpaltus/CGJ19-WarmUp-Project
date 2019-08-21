@@ -6,6 +6,8 @@ public class EntityHurtable : MonoBehaviour
 {
     public float flashTimer = 0.5f;
 
+    public GameObject drop;
+    public int dropCount;
 
     public int health = 2;
     public int maxHealth = 2;
@@ -56,6 +58,13 @@ public class EntityHurtable : MonoBehaviour
     public virtual void OnDeath()
     {
         Instantiate(ParticleManager.instance.GetParticles("death"), transform.position, Quaternion.identity);
+        
+        for (int i = 0; i < dropCount; i++)
+        {
+            Vector3 pos = new Vector3(transform.position.x + Random.Range(-1.5f, 1.5f), transform.position.y + Random.Range(0f, 0.5f), 0);
+            GameObject dropped = Instantiate(drop, pos, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 

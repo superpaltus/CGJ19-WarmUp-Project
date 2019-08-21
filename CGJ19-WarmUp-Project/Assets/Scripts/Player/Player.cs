@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
     {
         if (health + _change > 0)
         {
-            health--;
+            health += _change;
         } else
         {
             isDead = true;
@@ -78,11 +78,11 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.B))
         {
-            health++;
+            ChangeHealth(1);
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            health--;
+            ChangeHealth(-1);
         }
     }
 

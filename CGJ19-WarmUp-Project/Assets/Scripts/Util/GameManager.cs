@@ -9,9 +9,13 @@ public class GameManager : MonoBehaviour
     public Texture2D cursorTexture;
     public Vector2 hotspot;
 
+    public GameObject player;
+
     //Enemy things
     private List<EnemyAI> enemies;
     public bool enemiesMoving = false;
+
+   
 
     void Start()
     {
