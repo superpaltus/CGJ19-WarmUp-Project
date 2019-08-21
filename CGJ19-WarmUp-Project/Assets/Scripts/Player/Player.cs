@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float moveX, moveY;
-    public float lastMoveX, lastMoveY;
-    public bool moving;
-    public Vector2 nextMove;
+
+    public GameObject projectileHeart;
+
+    float moveX, moveY;
+    float lastMoveX, lastMoveY;
+    bool moving;
+    Vector2 nextMove;
 
     public static Player instance;
 
     public static int health = 5;
+
+
+    public bool isDead = false;
 
 
     public float speed;
@@ -44,6 +50,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        CheckForAttack();
         CheckDebugControls();
         CheckForDash();
         UpdateMovement();
@@ -53,6 +60,19 @@ public class Player : MonoBehaviour
 
     // ====OTHER FUNCTIONS====
 
+
+
+
+    public void ChangeHealth(int _change)
+    {
+        if (health + _change > 0)
+        {
+            health--;
+        } else
+        {
+            isDead = true;
+        }
+    }
 
     void CheckDebugControls()
     {
@@ -101,6 +121,24 @@ public class Player : MonoBehaviour
         playerRigidbody.AddForce(dashDir * speed * 150, ForceMode2D.Impulse);
         Instantiate(ParticleManager.instance.GetParticles("dash"), transform.position, Quaternion.identity);
         timeUntilDash = 1;
+    }
+
+    void CheckForAttack()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector2 shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            shootDir = shootDir.normalized;
+
+            ShootHeart(shootDir);
+        }
+    }
+
+    void ShootHeart(Vector2 _shootDir)
+    {
+        GameObject heart = Instantiate(projectileHeart, transform.position, Quaternion.identity);
+        heart.GetComponent<ProjectileHeart>().targetDir = _shootDir;
+        ChangeHealth(-1);
     }
     
     void CheckForDash()

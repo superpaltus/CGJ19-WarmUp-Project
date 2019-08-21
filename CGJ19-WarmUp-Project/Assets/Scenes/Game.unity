@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 100347015}
   - component: {fileID: 100347017}
   - component: {fileID: 100347016}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DashFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 297151629}
   - component: {fileID: 297151630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 398937782}
   - component: {fileID: 398937783}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrystalHeartManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 691881115}
   - component: {fileID: 691881114}
   - component: {fileID: 691881113}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: OuterWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2134,7 +2134,7 @@ GameObject:
   - component: {fileID: 887699142}
   - component: {fileID: 887699145}
   - component: {fileID: 887699144}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2275,7 +2275,7 @@ GameObject:
   - component: {fileID: 891263166}
   - component: {fileID: 891263168}
   - component: {fileID: 891263167}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DashHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2355,7 +2355,7 @@ GameObject:
   - component: {fileID: 917851613}
   - component: {fileID: 917851617}
   - component: {fileID: 917851618}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: DashMeterCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2549,8 +2549,9 @@ GameObject:
   - component: {fileID: 1311002440}
   - component: {fileID: 1311002439}
   - component: {fileID: 1311002443}
-  m_Layer: 0
-  m_Name: Enemy
+  - component: {fileID: 1311002445}
+  m_Layer: 9
+  m_Name: Grog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2564,7 +2565,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311002437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6, y: -0.5, z: 0}
+  m_LocalPosition: {x: 10.5, y: -8.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 87130355}
@@ -2583,8 +2584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1463216585}
-  speed: 3
-  viewRange: 10
+  speed: 12
+  viewRange: 7
   blockingLayer:
     serializedVersion: 2
     m_Bits: 1
@@ -2683,7 +2684,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ee49966829471fe4983307ea4b397bf7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2703,7 +2704,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -5789805
   m_SortingLayer: 4
-  m_SortingOrder: 50
+  m_SortingOrder: 850
   m_Sprite: {fileID: 964213772501613555, guid: 68d4bf5c3c2f5c8499af1dc1b9a6a44e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2715,6 +2716,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1311002445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311002437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a381e4ee3ade8c144ac04312180e185d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashTimer: 0.5
+  health: 2
+  maxHealth: 2
 --- !u!1 &1411008188
 GameObject:
   m_ObjectHideFlags: 0
@@ -6485,7 +6501,7 @@ GameObject:
   - component: {fileID: 1463216587}
   - component: {fileID: 1463216586}
   - component: {fileID: 1463216583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6602,12 +6618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a185fe8e2ac9ab446a9c0d98f704800b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveX: 0
-  moveY: 0
-  lastMoveX: 0
-  lastMoveY: 0
-  moving: 0
-  nextMove: {x: 0, y: 0}
+  projectileHeart: {fileID: 5570441078477231447, guid: d57f24e30ede63b4a9882d056ae939f8,
+    type: 3}
+  isDead: 0
   speed: 1
   timeUntilDash: 0
 --- !u!61 &1463216587
@@ -6671,7 +6684,7 @@ GameObject:
   - component: {fileID: 1466793205}
   - component: {fileID: 1466793204}
   - component: {fileID: 1466793203}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BackWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7996,4 +8009,7 @@ MonoBehaviour:
   particles:
   - identifier: dash
     emitter: {fileID: 4176289841868870856, guid: c6ea40d003207ec4fae820fe1c18ecd6,
+      type: 3}
+  - identifier: death
+    emitter: {fileID: 2096882657642974786, guid: 18d5aeb505f89e04cb915c6b971d71d4,
       type: 3}
