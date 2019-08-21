@@ -5,6 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+#region Event
+    public delegate void HealthEditHandler(int newValue);
+    public static event HealthEditHandler OnHealthValueChanged;
+
+    private void NotifyAboutHealthValueChanged()
+    {
+        if (OnHealthValueChanged != null)
+            OnHealthValueChanged(health);
+    }
+#endregion
+
     public GameObject projectileHeart;
 
     float moveX, moveY;
@@ -40,6 +51,11 @@ public class Player : MonoBehaviour
             Debug.Log("Multiple instances of player?");
         }
 
+        for (int i = 0; i < health; i++)
+        {
+            NotifyAboutHealthValueChanged();
+        }
+
         CheckForComponents();
     }
 
@@ -72,6 +88,7 @@ public class Player : MonoBehaviour
         {
             isDead = true;
         }
+        NotifyAboutHealthValueChanged();
     }
 
     void CheckDebugControls()
@@ -79,10 +96,12 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.B))
         {
             health++;
+            NotifyAboutHealthValueChanged();
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
             health--;
+            NotifyAboutHealthValueChanged();
         }
     }
 
