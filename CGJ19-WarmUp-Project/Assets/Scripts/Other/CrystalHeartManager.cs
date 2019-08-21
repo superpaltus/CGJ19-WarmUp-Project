@@ -51,4 +51,9 @@ public class CrystalHeartManager : MonoBehaviour
             spacing = 2 * Mathf.PI / currentHearts.Count;
         }
     }
+
+    private void OnDisable()
+    {
+        Player.OnHealthValueChanged -= Player_OnHealthValueChanged;
+    }
 }
