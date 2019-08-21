@@ -104,7 +104,19 @@ public class EnemyAI : MonoBehaviour
 
 
         if (dist <= viewRange)
-            playerInRange = true;
+        {
+            boxCollider.enabled = false;
+            RaycastHit2D castToPlayer = Physics2D.Linecast(transform.position, player.position, blockingLayer);
+
+            if (castToPlayer.transform == null)
+            {
+                playerInRange = true;
+            }
+            else
+                playerInRange = false;
+
+            boxCollider.enabled = true;
+        }
         else
             playerInRange = false;
 
@@ -113,6 +125,5 @@ public class EnemyAI : MonoBehaviour
             StopCoroutine(currentRoutine);
             Move();
         }
-        
     }
 }
