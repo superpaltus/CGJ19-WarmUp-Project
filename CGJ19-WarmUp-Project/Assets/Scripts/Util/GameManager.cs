@@ -55,9 +55,12 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            enemies[i].Move();
-            Debug.Log("MoveEnemy();!");
-            yield return new WaitForSeconds(0.1f);
+            if (enemies[i])
+            {
+                enemies[i].Move();
+                Debug.Log("MoveEnemy();!");
+                yield return new WaitForSeconds(0.1f);
+            }
         }
 
     }
